@@ -16,6 +16,11 @@ const objectives = [
 
 export function CaseStudy() {
   const { ref, isVisible } = useScrollReveal<HTMLElement>();
+  const videoPlayerUrl = `${import.meta.env.BASE_URL}video-player.html`;
+
+  const handleOpenVideo = () => {
+    window.open(videoPlayerUrl, '_blank', 'noopener,noreferrer');
+  };
 
   return (
     <section id="case-study" ref={ref} className="section-lg bg-white">
@@ -80,13 +85,21 @@ export function CaseStudy() {
 
           {/* Right Column - Image */}
           <div className={`reveal reveal-delay-2 ${isVisible ? 'visible' : ''}`}>
-            <div className="relative">
+            <button
+              type="button"
+              onClick={handleOpenVideo}
+              className="relative w-full text-left"
+              aria-label="Open Chimbote case study video in a new tab"
+            >
               <div className="aspect-video rounded-2xl overflow-hidden shadow-2xl">
                 <img
                   src="./images/chimbote.jpg"
                   alt="Chimbote coastal city aerial view"
                   className="w-full h-full object-cover"
                 />
+                <span className="absolute bottom-3 right-3 rounded-full bg-white/95 px-3 py-1 text-xs font-semibold text-navy-900 shadow-md">
+                  Click to watch video
+                </span>
               </div>
               
               {/* Floating Stats Card */}
@@ -109,7 +122,7 @@ export function CaseStudy() {
                   <p className="text-gray-500 text-xs">Agents Simulated</p>
                 </div>
               </div>
-            </div>
+            </button>
           </div>
         </div>
       </div>
